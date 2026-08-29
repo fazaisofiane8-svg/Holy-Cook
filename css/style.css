@@ -775,20 +775,6 @@ section { padding-block: var(--space-7); }
 
 .contact-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-4); }
 
-.socials { display: flex; gap: 10px; }
-.socials a {
-  display: grid;
-  place-items: center;
-  width: 42px; height: 42px;
-  border-radius: 50%;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  font-size: 1.1rem;
-  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
-}
-.socials a:hover { background: var(--color-gold); color: var(--color-on-gold); }
-
 .contact-map { border-radius: var(--radius-lg); overflow: hidden; min-height: 320px; }
 .contact-map iframe {
   width: 100%;
