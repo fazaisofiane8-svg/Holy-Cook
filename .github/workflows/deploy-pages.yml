@@ -28,7 +28,7 @@ jobs:
       - name: Prepare site folder
         run: |
           mkdir -p _site
-          cp -r index.html css js assets _site/
+          cp -r index.html 404.html css js assets _site/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
