@@ -18,9 +18,9 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # No `environment: github-pages` here on purpose: GitHub auto-creates that
+    # environment restricted to the default branch, which silently rejects
+    # deployments from this feature branch before a runner is even picked up.
     steps:
       - name: Checkout
         uses: actions/checkout@v4
