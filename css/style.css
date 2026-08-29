@@ -39,6 +39,7 @@
   --shadow-pop: 0 18px 40px rgba(5, 3, 1, 0.6);
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --dur: 220ms;
 }
 
@@ -321,6 +322,19 @@ svg {
   padding-block: var(--space-6);
   max-width: 820px;
 }
+.hero-inner > * {
+  opacity: 0;
+  animation: hero-in 800ms var(--ease) forwards;
+}
+.hero-inner > *:nth-child(1) { animation-delay: 80ms; }
+.hero-inner > *:nth-child(2) { animation-delay: 200ms; }
+.hero-inner > *:nth-child(3) { animation-delay: 360ms; }
+.hero-inner > *:nth-child(4) { animation-delay: 500ms; }
+.hero-inner > *:nth-child(5) { animation-delay: 640ms; }
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .eyebrow {
   display: inline-flex;
@@ -455,6 +469,7 @@ section { padding-block: var(--space-7); }
   font-family: var(--font-display);
   font-size: 2rem;
   color: var(--color-gold);
+  font-variant-numeric: tabular-nums;
 }
 .stat-label { color: var(--color-text-muted); font-size: 0.9rem; }
 

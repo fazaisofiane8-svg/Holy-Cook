@@ -80,13 +80,20 @@
     sections.forEach((section) => spy.observe(section));
   }
 
-  /* ---------- Reveal-on-scroll ---------- */
-  const revealTargets = document.querySelectorAll(
-    '.menu-card, .offre-card, .stat-card, .galerie-grid figure, .sauce-group'
+  /* ---------- Reveal-on-scroll (staggered) ---------- */
+  const revealGroups = document.querySelectorAll(
+    '.menu-grid, .offres-grid, .galerie-grid, .sauces-grid, .concept-stats'
   );
+  const MAX_STAGGER_STEPS = 6;
+  const STAGGER_STEP_MS = 60;
 
-  if ('IntersectionObserver' in window && revealTargets.length) {
-    revealTargets.forEach((el) => el.classList.add('reveal'));
+  if ('IntersectionObserver' in window && revealGroups.length) {
+    revealGroups.forEach((group) => {
+      Array.from(group.children).forEach((el, index) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = `${Math.min(index, MAX_STAGGER_STEPS) * STAGGER_STEP_MS}ms`;
+      });
+    });
     const reveal = new IntersectionObserver(
       (entries, obs) => {
         entries.forEach((entry) => {
@@ -98,7 +105,46 @@
       },
       { threshold: 0.15 }
     );
-    revealTargets.forEach((el) => reveal.observe(el));
+    revealGroups.forEach((group) => {
+      Array.from(group.children).forEach((el) => reveal.observe(el));
+    });
+  }
+
+  /* ---------- Animated stat counters ---------- */
+  const statNumbers = document.querySelectorAll('.stat-number');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if ('IntersectionObserver' in window && statNumbers.length) {
+    const animateCount = (el) => {
+      const text = el.textContent.trim();
+      const target = parseInt(text, 10);
+      const suffix = text.replace(/[0-9]/g, '');
+      if (Number.isNaN(target) || prefersReducedMotion) return;
+
+      const duration = 900;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = `${Math.round(target * eased)}${suffix}`;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    };
+
+    const counter = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCount(entry.target);
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+    statNumbers.forEach((el) => counter.observe(el));
   }
 
   /* ---------- Floating CTA visibility ---------- */
