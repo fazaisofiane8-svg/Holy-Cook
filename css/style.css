@@ -384,7 +384,6 @@ svg {
   .hero-inner > *:nth-child(3) { animation-delay: 360ms; }
   .hero-inner > *:nth-child(4) { animation-delay: 500ms; }
   .hero-inner > *:nth-child(5) { animation-delay: 600ms; }
-  .hero-inner > *:nth-child(6) { animation-delay: 700ms; }
   @keyframes hero-in {
     from { opacity: 0; transform: translateY(18px); }
     to { opacity: 1; transform: translateY(0); }
@@ -416,13 +415,6 @@ svg {
   letter-spacing: 0.5px;
 }
 .hero-title .highlight { color: var(--color-gold); }
-
-.hero-subtitle {
-  margin-top: var(--space-3);
-  font-size: clamp(1rem, 1.6vw, 1.2rem);
-  color: var(--color-text-muted);
-  max-width: 60ch;
-}
 
 .hero-cta {
   display: flex;
