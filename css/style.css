@@ -652,6 +652,13 @@ section { padding-block: var(--space-7); }
   font-weight: 700;
 }
 
+.panel-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  margin-bottom: var(--space-3);
+}
+
 /* Composer (tacos / roulé) */
 .composer-head {
   display: flex;
