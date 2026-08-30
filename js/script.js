@@ -147,19 +147,52 @@
     statNumbers.forEach((el) => counter.observe(el));
   }
 
-  /* ---------- Floating CTA visibility ---------- */
-  const floatingCta = document.querySelector('.floating-cta');
-  const hero = document.getElementById('accueil');
+  /* ---------- Reveal safety net ----------
+     Belt-and-braces: if IntersectionObserver exists but, for any reason,
+     never reports an intersection for a given element (unexpected layout,
+     browser quirk...), force it visible after a short delay so content
+     never stays hidden indefinitely. */
+  window.setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => {
+      el.classList.add('is-visible');
+    });
+  }, 2500);
 
-  if (floatingCta && hero && 'IntersectionObserver' in window) {
-    const ctaObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          floatingCta.classList.toggle('is-visible', !entry.isIntersecting);
-        });
-      },
-      { threshold: 0 }
-    );
-    ctaObserver.observe(hero);
+  /* ---------- Galerie lightbox ---------- */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const galerieItems = Array.from(document.querySelectorAll('.galerie-item'));
+  let lastFocusedEl = null;
+
+  function openLightbox(trigger) {
+    lastFocusedEl = trigger;
+    lightboxImg.src = trigger.dataset.full;
+    lightboxImg.alt = trigger.dataset.caption || '';
+    lightboxCaption.textContent = trigger.dataset.caption || '';
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+    if (lastFocusedEl) lastFocusedEl.focus();
+  }
+
+  if (lightbox && galerieItems.length) {
+    galerieItems.forEach((item) => {
+      item.addEventListener('click', () => openLightbox(item));
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+    });
   }
 })();
