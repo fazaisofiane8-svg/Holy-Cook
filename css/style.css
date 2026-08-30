@@ -159,12 +159,6 @@ svg {
 }
 .btn-outline:hover { background: var(--color-gold); color: var(--color-on-gold); }
 
-.btn-ghost {
-  color: var(--color-text);
-  padding-inline: 14px;
-}
-.btn-ghost:hover { color: var(--color-gold); }
-
 .link-cta {
   display: inline-flex;
   align-items: center;
@@ -256,6 +250,29 @@ svg {
 .main-nav a.is-active::after { right: 0; }
 
 .header-actions { display: flex; align-items: center; gap: 10px; }
+
+.header-icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: 1px solid transparent;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.header-icon-link svg { width: 1.1em; height: 1.1em; }
+.header-icon-link:hover { color: var(--color-gold); border-color: var(--color-border); }
+
+/* Full nav + Voir la carte already fill the header comfortably down to
+   860px; adding Appeler/Itinéraire alongside them only fits once the
+   container itself has room to spare beyond its own 1180px max-width
+   (verified: at 1024px the four items together overflowed by ~65px). */
+@media (max-width: 1180px) {
+  .header-icon-link { display: none; }
+}
 
 .nav-toggle {
   display: none;
@@ -366,7 +383,8 @@ svg {
   .hero-inner > *:nth-child(2) { animation-delay: 200ms; }
   .hero-inner > *:nth-child(3) { animation-delay: 360ms; }
   .hero-inner > *:nth-child(4) { animation-delay: 500ms; }
-  .hero-inner > *:nth-child(5) { animation-delay: 640ms; }
+  .hero-inner > *:nth-child(5) { animation-delay: 600ms; }
+  .hero-inner > *:nth-child(6) { animation-delay: 700ms; }
   @keyframes hero-in {
     from { opacity: 0; transform: translateY(18px); }
     to { opacity: 1; transform: translateY(0); }
@@ -412,6 +430,11 @@ svg {
   gap: var(--space-2);
   margin-top: var(--space-4);
 }
+.hero-cta--secondary {
+  margin-top: 4px;
+  gap: var(--space-4);
+}
+.hero-cta--secondary .link-cta { padding-block: 8px; font-size: 0.95rem; }
 
 .hero-badges {
   display: flex;
@@ -1002,6 +1025,11 @@ section { padding-block: var(--space-7); }
 }
 
 @media (max-width: 860px) {
+  /* Appeler/Itinéraire are already persistent in the fixed mobile action
+     bar below — showing them a second time in the hero would just repeat
+     the same two actions right above it. */
+  .hero-cta--secondary { display: none; }
+
   .mobile-actionbar {
     display: grid;
     grid-template-columns: 1fr 1fr 1.3fr;
@@ -1082,7 +1110,6 @@ section { padding-block: var(--space-7); }
   }
   .main-nav ul { flex-direction: column; gap: var(--space-3); }
   .main-nav a { font-size: 1.3rem; }
-  .header-actions .btn-ghost,
   .header-actions .btn-primary { display: none; }
   .nav-toggle { display: inline-flex; }
 
