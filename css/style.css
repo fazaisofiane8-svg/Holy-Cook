@@ -486,24 +486,6 @@ section { padding-block: var(--space-7); }
   margin-top: 6px;
   margin-bottom: var(--space-3);
 }
-.concept-copy p { color: var(--color-text-muted); }
-
-.concept-list { margin-top: var(--space-3); display: grid; gap: 10px; }
-.concept-list li {
-  padding-left: 24px;
-  position: relative;
-  color: var(--color-text);
-}
-.concept-list li::before {
-  content: "";
-  position: absolute; left: 0; top: 9px;
-  width: 10px; height: 10px;
-  background: var(--color-gold);
-  border-radius: 2px;
-  transform: rotate(45deg);
-}
-.concept-list strong { color: var(--color-gold); }
-
 .concept-stats {
   display: grid;
   gap: var(--space-2);
