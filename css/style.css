@@ -18,6 +18,9 @@
   --color-ember: #e8532b;
   --color-ember-dark: #b8391a;
 
+  --color-ubereats: #06c167;
+  --color-ubereats-dark: #049150;
+
   --font-display: "Anton", "Arial Narrow", sans-serif;
   --font-script: "Caveat", cursive;
   --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -159,6 +162,13 @@ svg {
 }
 .btn-outline:hover { background: var(--color-gold); color: var(--color-on-gold); }
 
+.btn-ubereats {
+  background: var(--color-ubereats);
+  color: var(--color-on-gold);
+}
+.btn-ubereats svg { width: 1.15em; height: 1.15em; }
+.btn-ubereats:hover { background: var(--color-ubereats-dark); }
+
 .link-cta {
   display: inline-flex;
   align-items: center;
@@ -272,6 +282,11 @@ svg {
    (verified: at 1024px the four items together overflowed by ~65px). */
 @media (max-width: 1180px) {
   .header-icon-link { display: none; }
+}
+@media (max-width: 1299px) {
+  .header-actions .btn-ubereats .btn-ubereats-label { display: none; }
+  .header-actions .btn-ubereats { padding: 12px; }
+  .header-actions .btn-ubereats svg { width: 1.3em; height: 1.3em; }
 }
 
 .nav-toggle {
@@ -466,6 +481,15 @@ section { padding-block: var(--space-7); }
   margin-top: 6px;
 }
 .section-sub { color: var(--color-text-muted); margin-top: var(--space-1); }
+.carte-ubereats { margin-top: var(--space-3); }
+@media (max-width: 640px) {
+  .carte-ubereats {
+    white-space: normal;
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+  }
+}
 
 /* =========================================================
    Concept
@@ -1005,7 +1029,7 @@ section { padding-block: var(--space-7); }
   display: none;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   /* Appeler/Itinéraire are already persistent in the fixed mobile action
      bar below — showing them a second time in the hero would just repeat
      the same two actions right above it. */
@@ -1074,7 +1098,7 @@ section { padding-block: var(--space-7); }
   .sur-mesure-visual { order: -1; max-height: 320px; }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .main-nav {
     position: fixed;
     inset: 72px 0 0 0;
@@ -1091,7 +1115,7 @@ section { padding-block: var(--space-7); }
   }
   .main-nav ul { flex-direction: column; gap: var(--space-3); }
   .main-nav a { font-size: 1.3rem; }
-  .header-actions .btn-primary { display: none; }
+  .header-actions .btn-primary, .header-actions .btn-ubereats { display: none; }
   .nav-toggle { display: inline-flex; }
 
   .sauces-grid { grid-template-columns: 1fr; }
