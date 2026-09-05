@@ -168,6 +168,10 @@ svg {
 }
 .btn-ubereats svg { width: 1.15em; height: 1.15em; }
 .btn-ubereats:hover { background: var(--color-ubereats-dark); }
+.icon-ubereats { stroke: none; }
+.icon-ubereats-bag { fill: var(--color-on-gold); }
+.icon-ubereats-handle { fill: var(--color-ubereats); transition: fill var(--dur) var(--ease); }
+.btn-ubereats:hover .icon-ubereats-handle { fill: var(--color-ubereats-dark); }
 
 .link-cta {
   display: inline-flex;
@@ -651,13 +655,6 @@ section { padding-block: var(--space-7); }
   transform: rotate(-5deg) translateY(-1px);
 }
 .badge-new--inline::after { display: none; }
-.badge-new--static {
-  position: static;
-  display: inline-block;
-  margin-bottom: var(--space-2);
-}
-.badge-new--static::after { display: none; }
-
 .menu-formulas {
   display: flex;
   flex-wrap: wrap;
@@ -757,60 +754,6 @@ section { padding-block: var(--space-7); }
 }
 .heat { color: var(--color-ember); display: inline-flex; gap: 1px; }
 .heat svg { font-size: 0.85rem; }
-
-/* =========================================================
-   Sur mesure
-   ========================================================= */
-.sur-mesure {
-  background: linear-gradient(180deg, var(--color-bg-alt), var(--color-bg));
-}
-.sur-mesure-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: var(--space-6);
-  align-items: center;
-}
-.sur-mesure-copy h2 {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  font-size: clamp(2rem, 4vw, 3rem);
-  margin: var(--space-2) 0 var(--space-2);
-}
-.sur-mesure-copy > p { color: var(--color-text-muted); max-width: 46ch; }
-
-.sur-mesure-steps { margin-top: var(--space-4); display: grid; gap: var(--space-2); }
-.sur-mesure-steps li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-weight: 600;
-}
-.sur-mesure-steps span {
-  display: grid;
-  place-items: center;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  background: var(--color-gold);
-  color: var(--color-on-gold);
-  font-weight: 800;
-  flex-shrink: 0;
-}
-
-.sur-mesure-price {
-  margin-top: var(--space-4);
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
-
-.sur-mesure-visual {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-pop);
-  border: 1px solid var(--color-border);
-}
-.sur-mesure-visual img { width: 100%; height: 100%; object-fit: cover; }
 
 /* =========================================================
    Offres
@@ -1094,8 +1037,7 @@ section { padding-block: var(--space-7); }
   .composer-grid { grid-template-columns: 1fr 1fr; }
   .composer-grid .composer-col:last-child { grid-column: span 2; }
   .offres-grid { grid-template-columns: 1fr; }
-  .concept-grid, .sur-mesure-grid, .contact-grid { grid-template-columns: 1fr; }
-  .sur-mesure-visual { order: -1; max-height: 320px; }
+  .concept-grid, .contact-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 900px) {
