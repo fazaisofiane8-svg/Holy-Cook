@@ -47,8 +47,20 @@
     {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": "11:00",
+      "closes": "14:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"],
       "opens": "18:00",
-      "closes": "23:30"
+      "closes": "22:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday", "Sunday"],
+      "opens": "18:00",
+      "closes": "23:00"
     }
   ]
 }
@@ -573,7 +585,8 @@
           <div>
             <dt>Horaires</dt>
             <dd>
-              Mardi – Dimanche : 18h00 – 23h30<br>
+              Mardi – Jeudi : 11h00 – 14h30 &amp; 18h00 – 22h30<br>
+              Vendredi – Dimanche : 11h00 – 14h30 &amp; 18h00 – 23h00<br>
               Lundi : fermé
             </dd>
           </div>
